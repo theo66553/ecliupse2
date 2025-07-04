@@ -6,7 +6,14 @@
 repeat
     task.wait()
  until game:IsLoaded()
- 
+-- Services
+local get_service = setmetatable({}, {
+    __index = function(self, index)
+        return cloneref(game:GetService(index));
+    end
+});
+local cloneref = cloneref or function(...) return ...; end
+local gethui = gethui or function() return cloneref(game:GetService("CoreGui")); end
  -- Menu/UI Creation
  if not isfile("eclipse.wtf") then
     makefolder("eclipse.wtf")
